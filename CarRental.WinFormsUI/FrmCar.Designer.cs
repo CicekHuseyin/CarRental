@@ -29,25 +29,25 @@
         private void InitializeComponent()
         {
             panelTop = new Panel();
+            chkIsAvailable = new CheckBox();
+            btnSil = new Button();
             lblColor = new Label();
+            btnGuncelle = new Button();
+            btnEkle = new Button();
             txtColor = new TextBox();
+            txtKm = new TextBox();
+            txtDailyPrice = new TextBox();
+            txtYear = new TextBox();
+            lblDurum = new Label();
+            lblKm = new Label();
+            lblDailyPrice = new Label();
             txtModel = new TextBox();
+            lblYear = new Label();
             txtBrand = new TextBox();
             lblModel = new Label();
             txtPlate = new TextBox();
-            lblPlate = new Label();
-            btnGuncelle = new Button();
-            btnSil = new Button();
-            btnEkle = new Button();
             lblBrand = new Label();
-            lblYear = new Label();
-            txtYear = new TextBox();
-            lblKm = new Label();
-            txtKm = new TextBox();
-            lblDailyPrice = new Label();
-            textBox1 = new TextBox();
-            chkIsAvailable = new CheckBox();
-            lblDurum = new Label();
+            lblPlate = new Label();
             dgvVehicles = new DataGridView();
             panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvVehicles).BeginInit();
@@ -63,7 +63,7 @@
             panelTop.Controls.Add(btnEkle);
             panelTop.Controls.Add(txtColor);
             panelTop.Controls.Add(txtKm);
-            panelTop.Controls.Add(textBox1);
+            panelTop.Controls.Add(txtDailyPrice);
             panelTop.Controls.Add(txtYear);
             panelTop.Controls.Add(lblDurum);
             panelTop.Controls.Add(lblKm);
@@ -81,6 +81,30 @@
             panelTop.Size = new Size(831, 289);
             panelTop.TabIndex = 1;
             // 
+            // chkIsAvailable
+            // 
+            chkIsAvailable.AutoSize = true;
+            chkIsAvailable.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            chkIsAvailable.ForeColor = Color.FromArgb(30, 136, 229);
+            chkIsAvailable.Location = new Point(512, 188);
+            chkIsAvailable.Name = "chkIsAvailable";
+            chkIsAvailable.Size = new Size(18, 17);
+            chkIsAvailable.TabIndex = 5;
+            chkIsAvailable.UseVisualStyleBackColor = true;
+            // 
+            // btnSil
+            // 
+            btnSil.BackColor = Color.DodgerBlue;
+            btnSil.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSil.ForeColor = Color.White;
+            btnSil.Location = new Point(365, 228);
+            btnSil.Name = "btnSil";
+            btnSil.Size = new Size(103, 44);
+            btnSil.TabIndex = 2;
+            btnSil.Text = "Sil";
+            btnSil.UseVisualStyleBackColor = false;
+            btnSil.Click += btnSil_Click;
+            // 
             // lblColor
             // 
             lblColor.AutoSize = true;
@@ -92,6 +116,32 @@
             lblColor.TabIndex = 0;
             lblColor.Text = "Renk";
             // 
+            // btnGuncelle
+            // 
+            btnGuncelle.BackColor = Color.DodgerBlue;
+            btnGuncelle.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnGuncelle.ForeColor = Color.White;
+            btnGuncelle.Location = new Point(474, 228);
+            btnGuncelle.Name = "btnGuncelle";
+            btnGuncelle.Size = new Size(103, 44);
+            btnGuncelle.TabIndex = 2;
+            btnGuncelle.Text = "Güncelle";
+            btnGuncelle.UseVisualStyleBackColor = false;
+            btnGuncelle.Click += btnGuncelle_Click;
+            // 
+            // btnEkle
+            // 
+            btnEkle.BackColor = Color.DodgerBlue;
+            btnEkle.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEkle.ForeColor = Color.White;
+            btnEkle.Location = new Point(256, 228);
+            btnEkle.Name = "btnEkle";
+            btnEkle.Size = new Size(103, 44);
+            btnEkle.TabIndex = 2;
+            btnEkle.Text = "Ekle";
+            btnEkle.UseVisualStyleBackColor = false;
+            btnEkle.Click += btnEkle_Click;
+            // 
             // txtColor
             // 
             txtColor.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
@@ -100,6 +150,63 @@
             txtColor.Size = new Size(156, 30);
             txtColor.TabIndex = 4;
             // 
+            // txtKm
+            // 
+            txtKm.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            txtKm.Location = new Point(512, 132);
+            txtKm.Name = "txtKm";
+            txtKm.Size = new Size(156, 30);
+            txtKm.TabIndex = 3;
+            // 
+            // txtDailyPrice
+            // 
+            txtDailyPrice.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            txtDailyPrice.Location = new Point(225, 181);
+            txtDailyPrice.Name = "txtDailyPrice";
+            txtDailyPrice.Size = new Size(156, 30);
+            txtDailyPrice.TabIndex = 3;
+            // 
+            // txtYear
+            // 
+            txtYear.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            txtYear.Location = new Point(225, 132);
+            txtYear.Name = "txtYear";
+            txtYear.Size = new Size(156, 30);
+            txtYear.TabIndex = 3;
+            // 
+            // lblDurum
+            // 
+            lblDurum.AutoSize = true;
+            lblDurum.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            lblDurum.ForeColor = Color.FromArgb(30, 136, 229);
+            lblDurum.Location = new Point(426, 188);
+            lblDurum.Name = "lblDurum";
+            lblDurum.Size = new Size(66, 23);
+            lblDurum.TabIndex = 0;
+            lblDurum.Text = "Durum";
+            // 
+            // lblKm
+            // 
+            lblKm.AutoSize = true;
+            lblKm.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            lblKm.ForeColor = Color.FromArgb(30, 136, 229);
+            lblKm.Location = new Point(426, 139);
+            lblKm.Name = "lblKm";
+            lblKm.Size = new Size(37, 23);
+            lblKm.TabIndex = 0;
+            lblKm.Text = "Km";
+            // 
+            // lblDailyPrice
+            // 
+            lblDailyPrice.AutoSize = true;
+            lblDailyPrice.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            lblDailyPrice.ForeColor = Color.FromArgb(30, 136, 229);
+            lblDailyPrice.Location = new Point(106, 188);
+            lblDailyPrice.Name = "lblDailyPrice";
+            lblDailyPrice.Size = new Size(106, 23);
+            lblDailyPrice.TabIndex = 0;
+            lblDailyPrice.Text = "Günlik Fiyat";
+            // 
             // txtModel
             // 
             txtModel.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
@@ -107,6 +214,17 @@
             txtModel.Name = "txtModel";
             txtModel.Size = new Size(156, 30);
             txtModel.TabIndex = 3;
+            // 
+            // lblYear
+            // 
+            lblYear.AutoSize = true;
+            lblYear.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            lblYear.ForeColor = Color.FromArgb(30, 136, 229);
+            lblYear.Location = new Point(106, 139);
+            lblYear.Name = "lblYear";
+            lblYear.Size = new Size(30, 23);
+            lblYear.TabIndex = 0;
+            lblYear.Text = "Yıl";
             // 
             // txtBrand
             // 
@@ -135,53 +253,6 @@
             txtPlate.Size = new Size(156, 30);
             txtPlate.TabIndex = 1;
             // 
-            // lblPlate
-            // 
-            lblPlate.AutoSize = true;
-            lblPlate.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPlate.ForeColor = Color.FromArgb(30, 136, 229);
-            lblPlate.Location = new Point(106, 40);
-            lblPlate.Name = "lblPlate";
-            lblPlate.Size = new Size(53, 23);
-            lblPlate.TabIndex = 0;
-            lblPlate.Text = "Plaka";
-            // 
-            // btnGuncelle
-            // 
-            btnGuncelle.BackColor = Color.DodgerBlue;
-            btnGuncelle.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnGuncelle.ForeColor = Color.White;
-            btnGuncelle.Location = new Point(474, 228);
-            btnGuncelle.Name = "btnGuncelle";
-            btnGuncelle.Size = new Size(103, 44);
-            btnGuncelle.TabIndex = 2;
-            btnGuncelle.Text = "Güncelle";
-            btnGuncelle.UseVisualStyleBackColor = false;
-            // 
-            // btnSil
-            // 
-            btnSil.BackColor = Color.DodgerBlue;
-            btnSil.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSil.ForeColor = Color.White;
-            btnSil.Location = new Point(365, 228);
-            btnSil.Name = "btnSil";
-            btnSil.Size = new Size(103, 44);
-            btnSil.TabIndex = 2;
-            btnSil.Text = "Sil";
-            btnSil.UseVisualStyleBackColor = false;
-            // 
-            // btnEkle
-            // 
-            btnEkle.BackColor = Color.DodgerBlue;
-            btnEkle.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnEkle.ForeColor = Color.White;
-            btnEkle.Location = new Point(256, 228);
-            btnEkle.Name = "btnEkle";
-            btnEkle.Size = new Size(103, 44);
-            btnEkle.TabIndex = 2;
-            btnEkle.Text = "Ekle";
-            btnEkle.UseVisualStyleBackColor = false;
-            // 
             // lblBrand
             // 
             lblBrand.AutoSize = true;
@@ -193,84 +264,16 @@
             lblBrand.TabIndex = 0;
             lblBrand.Text = "Marka";
             // 
-            // lblYear
+            // lblPlate
             // 
-            lblYear.AutoSize = true;
-            lblYear.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lblYear.ForeColor = Color.FromArgb(30, 136, 229);
-            lblYear.Location = new Point(106, 139);
-            lblYear.Name = "lblYear";
-            lblYear.Size = new Size(30, 23);
-            lblYear.TabIndex = 0;
-            lblYear.Text = "Yıl";
-            // 
-            // txtYear
-            // 
-            txtYear.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            txtYear.Location = new Point(225, 132);
-            txtYear.Name = "txtYear";
-            txtYear.Size = new Size(156, 30);
-            txtYear.TabIndex = 3;
-            // 
-            // lblKm
-            // 
-            lblKm.AutoSize = true;
-            lblKm.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lblKm.ForeColor = Color.FromArgb(30, 136, 229);
-            lblKm.Location = new Point(426, 139);
-            lblKm.Name = "lblKm";
-            lblKm.Size = new Size(37, 23);
-            lblKm.TabIndex = 0;
-            lblKm.Text = "Km";
-            // 
-            // txtKm
-            // 
-            txtKm.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            txtKm.Location = new Point(512, 132);
-            txtKm.Name = "txtKm";
-            txtKm.Size = new Size(156, 30);
-            txtKm.TabIndex = 3;
-            // 
-            // lblDailyPrice
-            // 
-            lblDailyPrice.AutoSize = true;
-            lblDailyPrice.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lblDailyPrice.ForeColor = Color.FromArgb(30, 136, 229);
-            lblDailyPrice.Location = new Point(106, 188);
-            lblDailyPrice.Name = "lblDailyPrice";
-            lblDailyPrice.Size = new Size(106, 23);
-            lblDailyPrice.TabIndex = 0;
-            lblDailyPrice.Text = "Günlik Fiyat";
-            // 
-            // textBox1
-            // 
-            textBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(225, 181);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(156, 30);
-            textBox1.TabIndex = 3;
-            // 
-            // chkIsAvailable
-            // 
-            chkIsAvailable.AutoSize = true;
-            chkIsAvailable.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            chkIsAvailable.ForeColor = Color.FromArgb(30, 136, 229);
-            chkIsAvailable.Location = new Point(512, 188);
-            chkIsAvailable.Name = "chkIsAvailable";
-            chkIsAvailable.Size = new Size(18, 17);
-            chkIsAvailable.TabIndex = 5;
-            chkIsAvailable.UseVisualStyleBackColor = true;
-            // 
-            // lblDurum
-            // 
-            lblDurum.AutoSize = true;
-            lblDurum.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lblDurum.ForeColor = Color.FromArgb(30, 136, 229);
-            lblDurum.Location = new Point(426, 188);
-            lblDurum.Name = "lblDurum";
-            lblDurum.Size = new Size(66, 23);
-            lblDurum.TabIndex = 0;
-            lblDurum.Text = "Durum";
+            lblPlate.AutoSize = true;
+            lblPlate.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            lblPlate.ForeColor = Color.FromArgb(30, 136, 229);
+            lblPlate.Location = new Point(106, 40);
+            lblPlate.Name = "lblPlate";
+            lblPlate.Size = new Size(53, 23);
+            lblPlate.TabIndex = 0;
+            lblPlate.Text = "Plaka";
             // 
             // dgvVehicles
             // 
@@ -288,6 +291,7 @@
             dgvVehicles.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvVehicles.Size = new Size(831, 302);
             dgvVehicles.TabIndex = 2;
+            dgvVehicles.CellClick += dgvVehicles_CellClick;
             // 
             // FrmCar
             // 
@@ -301,6 +305,7 @@
             Name = "FrmCar";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Araç İşlemleri";
+            Load += FrmCar_Load;
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvVehicles).EndInit();
@@ -324,7 +329,7 @@
         private Label lblModel;
         private NumericUpDown numericUpDown1;
         private TextBox txtKm;
-        private TextBox textBox1;
+        private TextBox txtDailyPrice;
         private TextBox txtYear;
         private Label lblKm;
         private Label lblDailyPrice;

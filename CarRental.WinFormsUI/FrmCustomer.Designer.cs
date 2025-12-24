@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             panelTop = new Panel();
+            mskPhone = new MaskedTextBox();
+            mskTc = new MaskedTextBox();
             btnGuncelle = new Button();
             btnSil = new Button();
             btnEkle = new Button();
@@ -37,8 +39,6 @@
             txtFullName = new TextBox();
             lblFullName = new Label();
             dgvCustomers = new DataGridView();
-            mskTc = new MaskedTextBox();
-            mskPhone = new MaskedTextBox();
             panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCustomers).BeginInit();
             SuspendLayout();
@@ -58,8 +58,27 @@
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(0, 0);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(882, 120);
+            panelTop.Size = new Size(837, 120);
             panelTop.TabIndex = 0;
+            // 
+            // mskPhone
+            // 
+            mskPhone.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            mskPhone.Location = new Point(498, 33);
+            mskPhone.Mask = "(999) 000-0000";
+            mskPhone.Name = "mskPhone";
+            mskPhone.Size = new Size(156, 30);
+            mskPhone.TabIndex = 4;
+            // 
+            // mskTc
+            // 
+            mskTc.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            mskTc.Location = new Point(198, 73);
+            mskTc.Mask = "00000000000";
+            mskTc.Name = "mskTc";
+            mskTc.Size = new Size(156, 30);
+            mskTc.TabIndex = 3;
+            mskTc.ValidatingType = typeof(int);
             // 
             // btnGuncelle
             // 
@@ -72,6 +91,7 @@
             btnGuncelle.TabIndex = 2;
             btnGuncelle.Text = "Güncelle";
             btnGuncelle.UseVisualStyleBackColor = false;
+            btnGuncelle.Click += btnGuncelle_Click;
             // 
             // btnSil
             // 
@@ -84,6 +104,7 @@
             btnSil.TabIndex = 2;
             btnSil.Text = "Sil";
             btnSil.UseVisualStyleBackColor = false;
+            btnSil.Click += btnSil_Click;
             // 
             // btnEkle
             // 
@@ -96,6 +117,7 @@
             btnEkle.TabIndex = 2;
             btnEkle.Text = "Ekle";
             btnEkle.UseVisualStyleBackColor = false;
+            btnEkle.Click += btnEkle_Click;
             // 
             // lblTc
             // 
@@ -152,34 +174,17 @@
             dgvCustomers.RowHeadersWidth = 51;
             dgvCustomers.RowTemplate.Height = 29;
             dgvCustomers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCustomers.Size = new Size(882, 383);
+            dgvCustomers.Size = new Size(837, 383);
             dgvCustomers.TabIndex = 1;
-            // 
-            // mskTc
-            // 
-            mskTc.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            mskTc.Location = new Point(198, 73);
-            mskTc.Mask = "00000000000";
-            mskTc.Name = "mskTc";
-            mskTc.Size = new Size(156, 30);
-            mskTc.TabIndex = 3;
-            mskTc.ValidatingType = typeof(int);
-            // 
-            // mskPhone
-            // 
-            mskPhone.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            mskPhone.Location = new Point(498, 33);
-            mskPhone.Mask = "(999) 000-0000";
-            mskPhone.Name = "mskPhone";
-            mskPhone.Size = new Size(156, 30);
-            mskPhone.TabIndex = 4;
+            dgvCustomers.CellClick += dgvCustomers_CellClick;
+            dgvCustomers.CellContentClick += dgvCustomers_CellContentClick;
             // 
             // FrmCustomer
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(882, 503);
+            ClientSize = new Size(837, 503);
             Controls.Add(dgvCustomers);
             Controls.Add(panelTop);
             Name = "FrmCustomer";

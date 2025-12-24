@@ -1,5 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
-using System.Configuration;
+﻿using System.Configuration;
+using System.Data.SqlClient;
 
 namespace CarRental.DataAccess.Db
 {

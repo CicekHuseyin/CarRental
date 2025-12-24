@@ -12,9 +12,8 @@ namespace CarRental.Business.Validation
             .MinimumLength(3).WithMessage("Müşteri adı en az 3 karakter olmalıdır");
 
             RuleFor(x => x.Phone)
-                .NotEmpty().WithMessage("Telefon numarası boş olamaz")
-                .Matches(@"^[0-9]{10,11}$")
-                .WithMessage("Telefon numarası geçersiz");
+                .NotEmpty().
+                WithMessage("Telefon numarası boş olamaz");
 
             RuleFor(x => x.TC)
                 .NotEmpty().WithMessage("TC Kimlik No boş olamaz")
