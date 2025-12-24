@@ -17,7 +17,7 @@ namespace CarRental.WinFormsUI
         private void FrmCustomer_Load(object sender, EventArgs e)
         {
             //MessageBox.Show(ConfigurationManager.ConnectionStrings["CarRentalDb"]?.ConnectionString);
-            LoadCustomersToGrid();
+            //LoadCustomersToGrid();
         }
 
         private void LoadCustomersToGrid()

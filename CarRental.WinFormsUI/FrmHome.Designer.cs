@@ -81,6 +81,7 @@
             pbCar.SizeMode = PictureBoxSizeMode.Zoom;
             pbCar.TabIndex = 0;
             pbCar.TabStop = false;
+            pbCar.Click += pbCar_Click;
             // 
             // label2
             // 
@@ -106,6 +107,7 @@
             pbRent.SizeMode = PictureBoxSizeMode.Zoom;
             pbRent.TabIndex = 0;
             pbRent.TabStop = false;
+            pbRent.Click += pbRent_Click;
             // 
             // pbReport
             // 

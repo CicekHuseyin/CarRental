@@ -23,5 +23,17 @@ namespace CarRental.WinFormsUI
             FrmCustomer customer = new FrmCustomer();
             customer.Show();
         }
+
+        private void pbCar_Click(object sender, EventArgs e)
+        {
+            FrmCar car = new FrmCar();
+            car.Show();
+        }
+
+        private void pbRent_Click(object sender, EventArgs e)
+        {
+            FrmRental frmRental = new FrmRental();
+            frmRental.Show();
+        }
     }
 }
