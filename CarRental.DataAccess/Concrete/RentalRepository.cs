@@ -19,14 +19,14 @@ namespace CarRental.DataAccess.Concrete
             {
                 SqlCommand cmd = new(
                 @"INSERT INTO Rentals
-              (VehicleId, CustomerId, RentDate, ReturnDate, TotalPrice)
-              VALUES (@v,@c,@rd,@ret,@t)", connection);
+                (VehicleId, CustomerId, RentDate, ReturnDate, TotalPrice)
+                VALUES (@v,@c,@rd,@ret,@t)", connection);
 
                 cmd.Parameters.AddWithValue("@v", entity.VehicleId);
                 cmd.Parameters.AddWithValue("@c", entity.CustomerId);
                 cmd.Parameters.AddWithValue("@rd", entity.RentDate);
                 cmd.Parameters.AddWithValue("@ret",
-                    entity.ReturnDate == null ? DBNull.Value : entity.ReturnDate);
+                entity.ReturnDate == null ? DBNull.Value : entity.ReturnDate);
                 cmd.Parameters.AddWithValue("@t", entity.TotalPrice);
 
                 connection.Open();
@@ -54,13 +54,33 @@ namespace CarRental.DataAccess.Concrete
         {
             try
             {
-                SqlCommand cmd = new(
-                    "DELETE FROM Rentals WHERE Id = @id", connection);
+                // Önce kiralamaya ait VehicleId alınır
+                SqlCommand getVehicleCmd = new(
+                    "SELECT VehicleId FROM Rentals WHERE Id = @id", connection);
 
-                cmd.Parameters.AddWithValue("@id", id);
+                getVehicleCmd.Parameters.AddWithValue("@id", id);
 
                 connection.Open();
-                cmd.ExecuteNonQuery();
+                object vehicleIdObj = getVehicleCmd.ExecuteScalar();
+
+                if (vehicleIdObj == null)
+                    throw new Exception("Kiralama kaydı bulunamadı.");
+
+                int vehicleId = Convert.ToInt32(vehicleIdObj);
+
+                // Kiralama silinir
+                SqlCommand deleteCmd = new(
+                    "DELETE FROM Rentals WHERE Id = @id", connection);
+
+                deleteCmd.Parameters.AddWithValue("@id", id);
+                deleteCmd.ExecuteNonQuery();
+
+                // Araç tekrar müsait yapılır
+                SqlCommand updateVehicleCmd = new(
+                    "UPDATE Vehicles SET IsAvailable = 1 WHERE Id = @vid", connection);
+
+                updateVehicleCmd.Parameters.AddWithValue("@vid", vehicleId);
+                updateVehicleCmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {

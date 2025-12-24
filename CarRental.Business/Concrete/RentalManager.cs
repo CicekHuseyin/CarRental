@@ -2,6 +2,7 @@
 using CarRental.Business.Validation;
 using CarRental.DataAccess.Concrete;
 using CarRental.Entities.Concrete;
+using CarRental.Entities.Dtos;
 
 namespace CarRental.Business.Concrete
 {
@@ -9,11 +10,15 @@ namespace CarRental.Business.Concrete
     {
         private readonly RentalRepository _repo;
         private readonly RentalValidator _validator;
+        private readonly VehicleRepository _vehicleRepo;
+        private readonly CustomerRepository _customerRepo;
 
         public RentalManager()
         {
             _repo = new RentalRepository();
             _validator = new RentalValidator();
+            _vehicleRepo = new VehicleRepository();
+            _customerRepo = new CustomerRepository();
         }
 
         /// <summary>
@@ -31,15 +36,34 @@ namespace CarRental.Business.Concrete
                 if (rental == null)
                     throw new Exception("Kiralama bilgisi boş olamaz");
 
-                // Default tarih ataması (business kararı)
-                if (rental.RentDate == default)
-                    rental.RentDate = DateTime.Now;
+                if (!rental.ReturnDate.HasValue)
+                    throw new Exception("Teslim tarihi boş olamaz");
+
+                if (rental.RentDate > rental.ReturnDate)
+                    throw new Exception("Teslim tarihi kiralama tarihinden küçük olamaz");
+
+                // Araç bilgisi çekilir
+                var vehicle = _vehicleRepo.GetById(rental.VehicleId);
+                if (vehicle == null)
+                    throw new Exception("Araç bulunamadı");
+
+                // Gün sayısı hesaplanır
+                int totalDays = (rental.ReturnDate.Value.Date - rental.RentDate.Date).Days;
+                if (totalDays <= 0)
+                    totalDays = 1;
+
+                // TOPLAM FİYAT HESABI
+                rental.TotalPrice = totalDays * vehicle.DailyPrice;
 
                 var result = _validator.Validate(rental);
                 if (!result.IsValid)
                     throw new Exception(result.Errors.First().ErrorMessage);
 
                 _repo.Add(rental);
+
+                // Araç pasif hale getirilir
+                vehicle.IsAvailable = false;
+                _vehicleRepo.Update(vehicle);
             }
             catch (Exception ex)
             {
@@ -68,11 +92,25 @@ namespace CarRental.Business.Concrete
         /// <summary>
         /// Sistemde kayıtlı tüm kiralama işlemlerini listeler.
         /// </summary>
-        public List<Rental> GetAll()
+        public List<RentalListDto> GetAll()
         {
             try
             {
-                return _repo.GetAll();
+                var rentals = _repo.GetAll();
+                var vehicles = _vehicleRepo.GetAll();
+                var customers = _customerRepo.GetAll();
+
+                var list = rentals.Select(r => new RentalListDto
+                {
+                    Id = r.Id,
+                    Plate = vehicles.First(v => v.Id == r.VehicleId).Plate,
+                    CustomerFullName = customers.First(c => c.Id == r.CustomerId).FullName,
+                    RentDate = r.RentDate,
+                    ReturnDate = r.ReturnDate,
+                    TotalPrice = r.TotalPrice
+                }).ToList();
+
+                return list;
             }
             catch (Exception ex)
             {
@@ -111,6 +149,27 @@ namespace CarRental.Business.Concrete
                 if (rental.Id <= 0)
                     throw new Exception("Geçersiz kiralama ID");
 
+                if (!rental.ReturnDate.HasValue)
+                    throw new Exception("Teslim tarihi boş olamaz");
+
+                if (rental.RentDate > rental.ReturnDate)
+                    throw new Exception("Teslim tarihi kiralama tarihinden küçük olamaz");
+
+                // Araç bilgisi çekilir
+                var vehicle = _vehicleRepo.GetById(rental.VehicleId);
+                if (vehicle == null)
+                    throw new Exception("Araç bulunamadı");
+
+                // Gün sayısı hesaplanır
+                int totalDays =
+                    (rental.ReturnDate.Value.Date - rental.RentDate.Date).Days;
+
+                if (totalDays <= 0)
+                    totalDays = 1;
+
+                // TOPLAM FİYAT YENİDEN HESAPLANIR
+                rental.TotalPrice = totalDays * vehicle.DailyPrice;
+
                 var result = _validator.Validate(rental);
                 if (!result.IsValid)
                     throw new Exception(result.Errors.First().ErrorMessage);
@@ -121,6 +180,11 @@ namespace CarRental.Business.Concrete
             {
                 throw new Exception("Kiralama güncelleme işlemi başarısız.", ex);
             }
+        }
+
+        List<Rental> IRentalService.GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

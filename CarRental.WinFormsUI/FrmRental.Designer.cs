@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             panelTop = new Panel();
-            btnGuncelle = new Button();
-            btnSil = new Button();
-            btnEkle = new Button();
-            lblVehicle = new Label();
-            cmbVehicle = new ComboBox();
-            lblCustomer = new Label();
-            cmbCustomer = new ComboBox();
-            lblRentDate = new Label();
-            dtpRentDate = new DateTimePicker();
-            lblReturnDate = new Label();
-            dtpReturnDate = new DateTimePicker();
-            lblTotalPrice = new Label();
             txtTotalPrice = new TextBox();
+            btnGuncelle = new Button();
+            btnEkle = new Button();
+            dtpReturnDate = new DateTimePicker();
+            btnSil = new Button();
+            dtpRentDate = new DateTimePicker();
+            cmbCustomer = new ComboBox();
+            cmbVehicle = new ComboBox();
+            lblReturnDate = new Label();
+            lblCustomer = new Label();
+            lblTotalPrice = new Label();
+            lblRentDate = new Label();
+            lblVehicle = new Label();
             dgvRentals = new DataGridView();
             panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRentals).BeginInit();
@@ -69,6 +69,15 @@
             panelTop.Size = new Size(839, 222);
             panelTop.TabIndex = 1;
             // 
+            // txtTotalPrice
+            // 
+            txtTotalPrice.BackColor = Color.White;
+            txtTotalPrice.Location = new Point(238, 157);
+            txtTotalPrice.Name = "txtTotalPrice";
+            txtTotalPrice.ReadOnly = true;
+            txtTotalPrice.Size = new Size(190, 27);
+            txtTotalPrice.TabIndex = 7;
+            // 
             // btnGuncelle
             // 
             btnGuncelle.BackColor = Color.DodgerBlue;
@@ -80,18 +89,7 @@
             btnGuncelle.TabIndex = 2;
             btnGuncelle.Text = "Güncelle";
             btnGuncelle.UseVisualStyleBackColor = false;
-            // 
-            // btnSil
-            // 
-            btnSil.BackColor = Color.DodgerBlue;
-            btnSil.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSil.ForeColor = Color.White;
-            btnSil.Location = new Point(580, 148);
-            btnSil.Name = "btnSil";
-            btnSil.Size = new Size(103, 44);
-            btnSil.TabIndex = 2;
-            btnSil.Text = "Sil";
-            btnSil.UseVisualStyleBackColor = false;
+            btnGuncelle.Click += btnGuncelle_Click;
             // 
             // btnEkle
             // 
@@ -104,17 +102,50 @@
             btnEkle.TabIndex = 2;
             btnEkle.Text = "Ekle";
             btnEkle.UseVisualStyleBackColor = false;
+            btnEkle.Click += btnEkle_Click;
             // 
-            // lblVehicle
+            // dtpReturnDate
             // 
-            lblVehicle.AutoSize = true;
-            lblVehicle.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lblVehicle.ForeColor = Color.FromArgb(30, 136, 229);
-            lblVehicle.Location = new Point(88, 39);
-            lblVehicle.Name = "lblVehicle";
-            lblVehicle.Size = new Size(46, 23);
-            lblVehicle.TabIndex = 0;
-            lblVehicle.Text = "Araç";
+            dtpReturnDate.Checked = false;
+            dtpReturnDate.Format = DateTimePickerFormat.Short;
+            dtpReturnDate.Location = new Point(607, 90);
+            dtpReturnDate.Name = "dtpReturnDate";
+            dtpReturnDate.ShowCheckBox = true;
+            dtpReturnDate.Size = new Size(185, 27);
+            dtpReturnDate.TabIndex = 6;
+            dtpReturnDate.Value = new DateTime(2025, 12, 24, 0, 0, 0, 0);
+            // 
+            // btnSil
+            // 
+            btnSil.BackColor = Color.DodgerBlue;
+            btnSil.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSil.ForeColor = Color.White;
+            btnSil.Location = new Point(580, 148);
+            btnSil.Name = "btnSil";
+            btnSil.Size = new Size(103, 44);
+            btnSil.TabIndex = 2;
+            btnSil.Text = "Sil";
+            btnSil.UseVisualStyleBackColor = false;
+            btnSil.Click += btnSil_Click;
+            // 
+            // dtpRentDate
+            // 
+            dtpRentDate.Format = DateTimePickerFormat.Short;
+            dtpRentDate.Location = new Point(238, 90);
+            dtpRentDate.Name = "dtpRentDate";
+            dtpRentDate.Size = new Size(190, 27);
+            dtpRentDate.TabIndex = 6;
+            dtpRentDate.Value = new DateTime(2025, 12, 24, 0, 0, 0, 0);
+            // 
+            // cmbCustomer
+            // 
+            cmbCustomer.BackColor = Color.White;
+            cmbCustomer.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbCustomer.FormattingEnabled = true;
+            cmbCustomer.Location = new Point(607, 34);
+            cmbCustomer.Name = "cmbCustomer";
+            cmbCustomer.Size = new Size(185, 28);
+            cmbCustomer.TabIndex = 5;
             // 
             // cmbVehicle
             // 
@@ -123,49 +154,8 @@
             cmbVehicle.FormattingEnabled = true;
             cmbVehicle.Location = new Point(238, 34);
             cmbVehicle.Name = "cmbVehicle";
-            cmbVehicle.Size = new Size(156, 28);
+            cmbVehicle.Size = new Size(190, 28);
             cmbVehicle.TabIndex = 5;
-            // 
-            // lblCustomer
-            // 
-            lblCustomer.AutoSize = true;
-            lblCustomer.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lblCustomer.ForeColor = Color.FromArgb(30, 136, 229);
-            lblCustomer.Location = new Point(486, 39);
-            lblCustomer.Name = "lblCustomer";
-            lblCustomer.Size = new Size(71, 23);
-            lblCustomer.TabIndex = 0;
-            lblCustomer.Text = "Müşteri";
-            // 
-            // cmbCustomer
-            // 
-            cmbCustomer.BackColor = Color.White;
-            cmbCustomer.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbCustomer.FormattingEnabled = true;
-            cmbCustomer.Location = new Point(636, 34);
-            cmbCustomer.Name = "cmbCustomer";
-            cmbCustomer.Size = new Size(156, 28);
-            cmbCustomer.TabIndex = 5;
-            // 
-            // lblRentDate
-            // 
-            lblRentDate.AutoSize = true;
-            lblRentDate.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lblRentDate.ForeColor = Color.FromArgb(30, 136, 229);
-            lblRentDate.Location = new Point(88, 94);
-            lblRentDate.Name = "lblRentDate";
-            lblRentDate.Size = new Size(131, 23);
-            lblRentDate.TabIndex = 0;
-            lblRentDate.Text = "Kiralama Tarihi";
-            // 
-            // dtpRentDate
-            // 
-            dtpRentDate.Format = DateTimePickerFormat.Short;
-            dtpRentDate.Location = new Point(238, 90);
-            dtpRentDate.Name = "dtpRentDate";
-            dtpRentDate.Size = new Size(156, 27);
-            dtpRentDate.TabIndex = 6;
-            dtpRentDate.Value = new DateTime(2025, 12, 24, 0, 0, 0, 0);
             // 
             // lblReturnDate
             // 
@@ -178,16 +168,16 @@
             lblReturnDate.TabIndex = 0;
             lblReturnDate.Text = "Teslim Tarihi";
             // 
-            // dtpReturnDate
+            // lblCustomer
             // 
-            dtpReturnDate.Checked = false;
-            dtpReturnDate.Format = DateTimePickerFormat.Short;
-            dtpReturnDate.Location = new Point(636, 90);
-            dtpReturnDate.Name = "dtpReturnDate";
-            dtpReturnDate.ShowCheckBox = true;
-            dtpReturnDate.Size = new Size(156, 27);
-            dtpReturnDate.TabIndex = 6;
-            dtpReturnDate.Value = new DateTime(2025, 12, 24, 0, 0, 0, 0);
+            lblCustomer.AutoSize = true;
+            lblCustomer.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            lblCustomer.ForeColor = Color.FromArgb(30, 136, 229);
+            lblCustomer.Location = new Point(486, 39);
+            lblCustomer.Name = "lblCustomer";
+            lblCustomer.Size = new Size(71, 23);
+            lblCustomer.TabIndex = 0;
+            lblCustomer.Text = "Müşteri";
             // 
             // lblTotalPrice
             // 
@@ -200,14 +190,27 @@
             lblTotalPrice.TabIndex = 0;
             lblTotalPrice.Text = "Toplam Fiyat";
             // 
-            // txtTotalPrice
+            // lblRentDate
             // 
-            txtTotalPrice.BackColor = Color.White;
-            txtTotalPrice.Location = new Point(238, 157);
-            txtTotalPrice.Name = "txtTotalPrice";
-            txtTotalPrice.ReadOnly = true;
-            txtTotalPrice.Size = new Size(156, 27);
-            txtTotalPrice.TabIndex = 7;
+            lblRentDate.AutoSize = true;
+            lblRentDate.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            lblRentDate.ForeColor = Color.FromArgb(30, 136, 229);
+            lblRentDate.Location = new Point(88, 94);
+            lblRentDate.Name = "lblRentDate";
+            lblRentDate.Size = new Size(131, 23);
+            lblRentDate.TabIndex = 0;
+            lblRentDate.Text = "Kiralama Tarihi";
+            // 
+            // lblVehicle
+            // 
+            lblVehicle.AutoSize = true;
+            lblVehicle.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            lblVehicle.ForeColor = Color.FromArgb(30, 136, 229);
+            lblVehicle.Location = new Point(88, 39);
+            lblVehicle.Name = "lblVehicle";
+            lblVehicle.Size = new Size(46, 23);
+            lblVehicle.TabIndex = 0;
+            lblVehicle.Text = "Araç";
             // 
             // dgvRentals
             // 
@@ -225,6 +228,7 @@
             dgvRentals.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvRentals.Size = new Size(839, 273);
             dgvRentals.TabIndex = 2;
+            dgvRentals.CellClick += dgvRentals_CellClick;
             // 
             // FrmRental
             // 
@@ -238,6 +242,7 @@
             Name = "FrmRental";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Araç Kiralama İşlemleri";
+            Load += FrmRental_Load;
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRentals).EndInit();
