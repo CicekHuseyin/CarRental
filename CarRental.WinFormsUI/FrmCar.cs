@@ -139,6 +139,7 @@ namespace CarRental.WinFormsUI
         /// </param>
         private void dgvVehicles_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            btnEkle.Enabled = false;
             try
             {
                 if (e.RowIndex < 0)
