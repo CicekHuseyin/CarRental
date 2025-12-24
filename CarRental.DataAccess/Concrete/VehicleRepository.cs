@@ -1,6 +1,6 @@
 ﻿using CarRental.Entities.Concrete;
-using Microsoft.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace CarRental.DataAccess.Concrete
 {
