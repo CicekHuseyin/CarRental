@@ -1,4 +1,5 @@
 ﻿using CarRental.Entities.Concrete;
+using CarRental.Entities.Dtos;
 
 namespace CarRental.Business.Abstract
 {
@@ -9,5 +10,6 @@ namespace CarRental.Business.Abstract
         void Add(Rental rental);
         void Update(Rental rental);
         void Delete(int id);
+        List<VehicleRevenueDto> GetVehicleRevenue();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CarRental.Entities.Concrete;
+using CarRental.Entities.Dtos;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -232,6 +233,39 @@ namespace CarRental.DataAccess.Concrete
                 if (connection.State == ConnectionState.Open)
                     connection.Close();
             }
+        }
+
+        public List<VehicleRevenueDto> GetVehicleRevenue()
+        {
+            List<VehicleRevenueDto> list = new();
+
+            try
+            {
+                SqlCommand cmd = new(@"
+            SELECT v.Plate, SUM(r.TotalPrice) AS TotalRevenue
+            FROM Rentals r
+            JOIN Vehicles v ON v.Id = r.VehicleId
+            GROUP BY v.Plate", connection);
+
+                connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    list.Add(new VehicleRevenueDto
+                    {
+                        Plate = reader["Plate"].ToString(),
+                        TotalRevenue = (decimal)reader["TotalRevenue"]
+                    });
+                }
+            }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                    connection.Close();
+            }
+
+            return list;
         }
     }
 }

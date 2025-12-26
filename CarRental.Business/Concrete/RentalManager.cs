@@ -186,5 +186,18 @@ namespace CarRental.Business.Concrete
         {
             throw new NotImplementedException();
         }
+
+        public List<VehicleRevenueDto> GetVehicleRevenue()
+        {
+            try
+            {
+                return _repo.GetVehicleRevenue();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Araç bazlı ciro raporu alınamadı.", ex);
+            }
+        }
+
     }
 }

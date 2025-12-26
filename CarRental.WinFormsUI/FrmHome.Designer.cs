@@ -121,6 +121,7 @@
             pbReport.SizeMode = PictureBoxSizeMode.Zoom;
             pbReport.TabIndex = 0;
             pbReport.TabStop = false;
+            pbReport.Click += pbReport_Click;
             // 
             // label3
             // 
